@@ -1,0 +1,217 @@
+
+Brain storming ideas :
+-----------------------------------------
+- question à l'inscription si non converti => plan d'études pour ceux qui cherchent 
+- dans les themes réflexions sur de nouvelles interprétations
+- groupe paryer video live / audio ... -> future
+- live predic audio / video -> future
+- ajouter au podcast des sons : feu, pluie,etc...
+- ajout d'effets : cloche, sonnerie, courte mélodie, ...
+- deepl learning : trouver des verses avec tel ou tel autre intention, sentiements ...
+- deep learning pour correction du son 
+- instagram du podcast : edition du son directement dans l'app ! et ajout d'effets 
+- Génération d'animation podcast automatique : visualisation son , ondes, feu, ... liés au son du podcast
+- Créer des communautés : église, groupe de prière
+- Faire la fenêtre de signalement 
+- Moderation end point => openAI
+- Podcast avec Flux RSS 
+- lié les annotations à un théme : questions , intentions, prière , ... 5 
+- En plus du tag verse => demandé de l'aide  pour la compréhesnion dans une conversation entre amis 
+- Voir les versets taggés par les autres dans les bicollab en commun 
+- explications automatique gemini
+- prière : chaque son tour active son micro, puis une compilation est faite une fois tous les enregistrement fait. Ajout d'un fond sonore + effet possible. 
+- créer event quand new testimony 
+- Personnaliser couleur des polices (verse image + bible collaborative)
+- Générer un editeur de podcast audio ou video qui en fonction du tag temps change l'écran du dessus et effectue des actions comme "Pause video ou audio"
+
+VERSES :
+
+- short film from Lumo project 
+- liens à faire à la mano => Calaghan
+- Explications from GEMINI
+- Defintions des mots grec à faire à la mano => Calaghan
+
+UX : 
+-----------------------------------------
+- ajouter animation fadeOut feed scrolling 
+- ajouter skeleton chargement du feed 
+
+Bugs :
+-----------------------------------------
+- Limiter les event à une seule photo 
+- Mettre une safe area sur tous les stack screen sans header 
+
+- partager les notes comme évents
+- partager les verse comme évents depuis versets menu 
+
+- https://d3owcl6pd5zkqc.cloudfront.net/images/Genesis/Genesis_1.webp
+
+
+=> Pour les deux améliorer le imageSlector ou le dupliquer ! (Plus d'images, choisir le thème, choisir la police) (OK)
+- Bouton ajouter à mettre dans un cercle de couleur (OK)
+- Bouton ajouter couleur dans style du component directement (OK => tout rechecker)
+- Select Book problème dans nom chapitre (OK)
+- note aucune bible collaborative dans les filtres (OK)
+
+- Filtrage impossible de check plusieurs bicollab (OK)
+
+- Filtrage ne fonctionne plus ni tag ni annotations (OK)
+- bicollab invicible après modificiation => not uodate current members (à tester)
+- bicollab après supreesion booklist not refresh => créer un refresh dans flatlist (OK refresh déjà présent)
+- Voir move backward et forward book (à tester)
+
+- Revoir getAllverse dans notelist (OK)
+- si pas de couleur accent => set color accent par défaut (à tester)
+
+- Faire theme le dark couleur fond et écriture (OK)
+- Adapter tous les titres au mode dark et light
+- Faire icone app (Ok)
+- Après compilation impossible de lancer app => test via login page + rmeettre id project correct
+- Pour plus de rapidité gérer les books, chapters et verse => par page charge lot par lots pour imiter l'infinite scroll
+    -> Pareil filtre gérer 10 par 10
+
+
+
+A faire :
+-----------------------------------------
+
+- multi-langue : FR,EN,ES,DE
+- Créer un nouveau compte pour test
+- limiter la requete du feed + scroll infinte avec requête at the end of flatlist
+- inscription choisir pays 
+- inscription choisir langue (FR pour le moment)
+- coder les options (Prêt à être utilisé)
+- partage réseau sociaux 
+- Que faire de follow ??? => inclure à ma communauté => permet de définir ta communauté 
+
+
+
+A tester :
+-----------------------------------------
+- rééditer les events et testimony verse avec la nouvelle version du book ( à tester)
+- Podcast database (à tester)
+- Tester conversation (à tester)
+- Quitter conversation à tester entre deux utilisateurs !
+- question conversation (à tester)
+- Modifier la biCollab ( à tester)
+- Supprimer le biCollab (à tester )
+- Stylisé bicollab list (à tester )
+
+- Verses taggés choisir la bicollabroative => FAIRE TOUS LES THEME (à tester )
+- notelist idem choisir la bicollabroative = > (à tester )
+- filtre id du check = id de la biccollab donc pas OK (à tester)
+
+- tests Messages 
+
+- userView check if testimony is tagged pour hide buton marqué (à tester)
+- Boutons de personnalisation (à tester)
+- login toujours vert ! ( à tester)
+- suppression tagVerse ( à tester)
+- Tester l'ensemble du dashboard et des marquages ( à tester)
+- rafraichissement du feed lorsqu'on supprime un event (à tester)
+- Addprayer => ajouter arrayUnion (à tester)
+- Ajouter une image pour les conv instant (à tester)
+- partage sur d'autres applications (à tester)
+- reset mot de passe utlisateur (à tester)
+- Ajouter la fonctionnalité follow (à tester)
+- Bouton "..." dans commentaires à programmer (à tester)
+- Modification des conv (à tester)
+- fonction suppression commentaire -> eventbackEnd (à tester)
+- modifier des évements (à tester)
+- GetAllConv where I am a member ! (à tester)
+- toast quand tu exportes ton témoignage (à tester)
+
+
+
+Communication
+------------------------------------------
+- Moi : 
+    * Répondre à mes questions
+    * Améliorer ma personnalité 
+    * Voir au dela des peurs 
+    * Developpement personnel 
+    * Relaxation 
+    * Prière personnelle
+
+- Communauté :
+    * Partager les témoignages personnel : créer  un kit automatiquement à partager
+    * Prier ensemble 
+    * Apprendre ensemble 
+    * Débattre , se questionner 
+    * Rencontrer de nouvelles personnes
+
+- Les autres : 
+    * Evangéliser : partager les témoignages, les podcasts 
+    * Répondre aux questions plus larges
+    * Poser des questions  
+
+- Projets annexes :
+    * Académie de coding prison
+    * Ouverture d'établissement et aide dans les régions persécutées
+
+
+Fini 
+----------------------------------------------------------
+- intégrer les function bottomsheet au components "notes" (OK)
+- Likes note ajouter la lecture après écritue et à l'ouverture => crée une nouvelle BDD ( OK)
+- suppression et modification des tags verses (OK)
+- associer les notes à une bible collaborative (OK)
+- Modification de la note (OK)
+- scrollview tableau de bord (OK)
+- spéarer boutons options (OK) 
+- tableau de bord QR (OK)
+- UserDetails => backgroundcolor (OK)
+- header taglist OK
+- header testimonies OK
+- journal de bord get user name + verse du moment OK
+- tests bicollab +  test note, verses et testi (OK)
+- mettre l'icône ploice seulemnt sur verse (OK)
+- Une vue pour lire les versets (OK)
+- Une vue pour lire les testimony marqués (OK)
+- Une vue pour voir toutes les annotations (OK)
+- Afficher les avatars si annotations (OK)
+- Modification de la couleur de surlignage ( OK mais pas OK => à voir )
+- pouvoir changer de chapitre en scrollant pour lire (OK à tester + change book) 
+        => ajout d'un simple bouton en haut et en bas pour changer de chapitre (à tester)
+- scroll chapitre => à mettre en service (OK)
+- ne peu plus déoruler l'ensemble des verses ( OK )
+- add like to notes (OK ) et revoir le style de la page note 
+- Quand tu lis le verset => regarder si ce verset est tagé ou non OK (OK)
+- activity indicator chargement des notes et versets (OK)
+- Pouvoir choisir une police d'écriture (OK)
+- surligner une ligne d'une flatilist (OK)
+- Tag verse after underline (OK)
+- Tag du verset (à tester ou à faire) par théme => couleur liée à une théme (OK)
+- Afficher les versets taggés => surlignage si IstaggedVerse return true et annotés (OK)
+- créer deux nouvelles collection pour tagger les test et les verse par users (OK)
+- verset préférés marche plus !!! (OK)
+- Verset sousligne marche pas (OK)
+- Verset invicible ? ( OK )
+- 4 ème couleur invicible ( OK )
+- Changement de police ne réagit pas (OK)
+- feed s'efface (OK avec setTimeout)
+- revoir affichage commentaires (OK)
+- Commentaires => le clavier se referme immédiatemment (OK)
+- Refaire logo couleur bleu violet
+- Mettre en place le dotenv pour les clés API OK
+- Events photo => stock uri phone et non url storage ! ( OK )
+- image conversation en base64 attention (OK)
+- isUseFocus sur useEffect du convList (OK)
+- members dans conversation (OK)
+- Mettre activity indicator convlist OK
+- Mettre activity dans commentaires OK
+- cliques sur feed profil go to viewProfile ( OK )
+- Créer une conversation instantanée depuis le viewProfile ( OK )
+- mettre tous les activity indicator (OK)
+- ConvCard extrait de la conversation ( OK )
+- supprimer des événements (OK)
+- Pull dans conversation (OK )
+- Bouton créer conversation (OK)
+- bandeau pour commentiares (OK)
+- Bouton "..." dans convlist à programmer (OK)
+- Suprression des conv (OK)
+- Fonction quitter la conversation arrayRemove (OK)
+- Créer un composant card com avec la list et le bottom sheet comme convlist (OK )
+- Tagger des versets OK
+- Tagger les témoignages OK
+- Pour cela ajouter dans utilisateur un array pour les verses avec la référence et un array avec les UsId pour les testimony OK

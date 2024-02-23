@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "scheme": "acme",
+    "web": {
+      "bundler": "metro"
+    },
+    "name": "Testimony",
+    "slug": "testimony",
+    "plugins": [
+      "react-native-background-fetch",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+        }
+      ],
+      "expo-router"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "4552dd09-117d-4481-8fe5-dbd9353820cb"
+      }
+    },
+    "android": {
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "extraProguardRules": "-keep class com.google.android.gms.internal.consent_sdk.** { *; }",
+      "package": "com.florian02100.testimony"
+    },
+    "ios": {},
+    "owner": "fdordain02"
+  }
+}

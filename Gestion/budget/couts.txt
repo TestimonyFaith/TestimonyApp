@@ -1,0 +1,4 @@
+serveur par mois : 5000€ maximum (500 kUsers / day)
+CRM : 200€ / mois
+GSuite : 200€/ mois
+ 
