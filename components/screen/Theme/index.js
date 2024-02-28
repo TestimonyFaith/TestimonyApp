@@ -381,7 +381,6 @@ const DashBoard = ({ navigation, route }) =>{
                    />
                       
               </View>
-
               
               <TouchableOpacity style={[styleCom.button,{backgroundColor:COLORS.green,minWidth:'90%',alignItems:'center',gap:10,marginBottom:10}]} onPress={()=>{
                 DevSettings.reload();

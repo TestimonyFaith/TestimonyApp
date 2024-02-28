@@ -1,6 +1,5 @@
-import { View,Text,Image,Alert } from "react-native";
+import { View,Text,Image,Alert,TouchableOpacity, ActivityIndicator } from "react-native";
 import { ScrollView,FlatList, TextInput } from "react-native-gesture-handler";
-import { TouchableOpacity, ActivityIndicator } from "react-native";
 import {COLORS,FONT,icons,images,SIZES} from '../../constants';
 import styleCom from '../../styles/common'
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -19,11 +18,12 @@ import * as userBackEnd from '../../backend/Users'
 import * as tagVerseBackEnd from '../../backend/TagVerse'
 import moment from 'moment';
 
-import bibFr from '../../backend/bible/Data/json/fr_apee.json'
 import * as bookBackEnd from '../../backend/importBook';
 import { useIsFocused } from "@react-navigation/native";
 import Toast from 'react-native-root-toast';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { logger } from "react-native-logs";
+import chapTitle from '../../backend/bible/Weebly/chapTitle.json'
 
 const InteractiveBook = ({navigation,route}) =>{
 
@@ -55,6 +55,8 @@ const [idxBook,setIdxBook]=useState(0);
 const [annotations,setAnnotations]=useState([]);
 const [allAnnotations,setAllAnnotations]=useState([]);
 const [noteContent,setNoteContent]=useState('');
+const [titleChap,setTitleChap]=useState('');
+const [imgChapter,setImgChapter]=useState('');
 
 //state des bottomsheet 
 const [isVisible,setIsVisible]=useState(false);
@@ -72,6 +74,8 @@ const [dataVerse, setDataVerse]=useState([]);
 const [colorVerse, setColorVerse]=useState([]);
 const [sizePolice, setSizePolice]=useState(14);
 const [famillyPolice,setFamillyPolice]=useState('');
+
+const log = logger.createLogger();
 
 /*const colorUnderline = [
     {theme:'Paix',code:'#50C878'},
@@ -234,6 +238,7 @@ async function getAllVerse(num){
     var tagColor = COLORS.lightWhite;
     var i = 0;
 
+    console.clear();
     
     await noteBackEnd.readAvatarByRef(bookRef,num)
     .then(async(arrNote)=>{
@@ -244,14 +249,13 @@ async function getAllVerse(num){
 
                 allVerses.forEach((verse)=>{
 
+
                     //console.log('get verse :'+i);
 
                     //Filter on tag 
                     tag = arrTags.filter((v)=>{return v.refVerse == i})
                     note = arrNote.filter((n)=>{return n.refVerse == i})
 
-                    console.log(' ARR TAG : '+tag.length+' '+JSON.stringify(tag));
-                   // console.log(' ARR NOTE : '+note.length);
 
                     if(tag.length >0){
                         tagColor = tag[0].backColor;
@@ -264,10 +268,10 @@ async function getAllVerse(num){
                     }
 
                     if(note.length >0){
-                        data.push({id:i,num:i+1,verseContent:verse.Text,color:tagColor,pictures:note[0].usAvatar,tagged:isTagged,idx:idxTag});
+                        data.push({id:i,num:i+1,verseContent:verse.Text,img:'',color:tagColor,pictures:note[0].usAvatar,tagged:isTagged,idx:idxTag});
 
                     }else{
-                        data.push({id:i,num:i+1,verseContent:verse.Text,color:tagColor,pictures:[],tagged:isTagged,idx:idxTag});
+                        data.push({id:i,num:i+1,verseContent:verse.Text,img:'',color:tagColor,pictures:[],tagged:isTagged,idx:idxTag});
 
                     }
 
@@ -301,6 +305,11 @@ const setBook = async(idx,name,testament) =>{
     console.log('set book : '+idx+' '+name+' ')
     await getAllChap(name,idTest)
     .then(()=>{
+
+        if(idx == undefined || idx =='' || idx == null){
+            idx = 0;
+        }
+
         setBookRef(name);
         setIdxBook(idx);
         setTestRef(idTest);
@@ -315,12 +324,20 @@ const setBook = async(idx,name,testament) =>{
 
 const setChapter = async(chap) =>{
     await getAllVerse(chap)
-    .then(()=>{
-        setChapRef(chap);
-        setShowBook(false);
-        setShowChapter(false);
-        setShowVerse(true);
-        setShowAnnotations(false);
+    .then(async()=>{
+       await bookBackEnd.readImgChap(idxBook+1,chap)
+        .then((imgChap)=>{
+           // Alert.alert('result',JSON.stringify(imgChap));
+            title = chapTitle.filter((t)=>{return t.idBook == idxBook})
+            setTitleChap(title[1].titleChap);
+            setImgChapter(imgChap[0].img);
+            setChapRef(chap);
+            setShowBook(false);
+            setShowChapter(false);
+            setShowVerse(true);
+            setShowAnnotations(false);
+        })
+
     })
 
 }
@@ -436,7 +453,7 @@ const Chapter = ({num}) => (
 
   );
 
-const Verse = ({num,content,color,isTagged,idxTag,pix}) => {
+const Verse = ({num,img,content,color,isTagged,idxTag,pix}) => {
 
     const [colorFixed, setColorFixed]=useState(color);
     const [isColorVisible,setIsColorVisible]=useState(false);
@@ -758,19 +775,18 @@ const NoteCard = ({id,usId,usAvatar,usFirst,usName,usPseudo,content,date,color,n
 
 const VersePage = ({}) => {
 
-
-    
-
     return(
 
         <ScrollView style={{flex:1,flexDirection:"column"}}>
 
                     <View style={{flex:1,flexDirection:'column',alignItems:'center'}}>
+                        <Image source={{uri:imgChapter}} style={{padding:10,margin:10,width:200,height:200,borderRadius:10}} />
                         <Text style={{fontSize:26,fontWeight:'bold'}}>{bookName}</Text>
+                        <Text style={{fontSize:26,fontWeight:'bold'}}>{titleChap}</Text>
                         <Text style={{fontSize:16,fontWeight:'bold',color:COLORS.darkGrayMsg,marginBottom:10}}>Chapitre {parseInt(chapRef)+1}</Text>
                         <FlatList                   
                             data={dataVerse}
-                            renderItem={({item}) => <Verse num={item.num} content={item.verseContent} color={item.color} pix={item.pictures} isTagged={item.tagged} idxTag={item.idx}/>}
+                            renderItem={({item}) => <Verse num={item.num} img={item.img} content={item.verseContent} color={item.color} pix={item.pictures} isTagged={item.tagged} idxTag={item.idx}/>}
                             keyExtractor={item => item.id}
                             style={{width:"100%",gap:10}} 
                         />

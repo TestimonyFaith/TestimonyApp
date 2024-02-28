@@ -20,7 +20,6 @@ import * as tagBackEnd from '../../../../backend/TagVerse'
 import * as biCollabBackEnd from '../../../../backend/BiCollab'
 import * as bookBackEnd from '../../../../backend/importBook'
 import { useIsFocused } from "@react-navigation/native";
-import bibFr from '../../../../backend/bible/Data/json/fr_apee.json';
 
 const TagList = ({ navigation }) =>{
 

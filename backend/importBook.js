@@ -158,3 +158,25 @@ export async function searchAllVersionVerse(lang,book,chapters,numVerse,testamen
         })
     return arrVersVersion;
 }
+
+export async function readImgChap(bookId,chapId){
+    arrDataConv = []
+    var owner = false;
+    
+    
+    const q = query(collection(db, "bifootnotes"),where('bookId',"==",bookId),where('chapRef','==',chapId));
+    
+    const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(async(doc) => {
+            console.log(doc.id, " => ", doc.data());
+
+            const json = doc.data();
+
+            arrDataConv.push({
+                img:json.imgChap
+            })
+    })
+
+    return arrDataConv;
+
+}

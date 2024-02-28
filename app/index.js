@@ -76,13 +76,13 @@ function LoginScreen({navigation}) {
   );
 }
 
-function HomeScreen({navigation,route}) {
+const HomeScreen = ({navigation,route})=> {
   return (
     <Home navigation={ navigation } route={route}/>
   );
 }
 
-function ConvScreen({navigation}) {
+const ConvScreen = ({navigation}) => {
   return (
     <ListConv navigation={ navigation }/>
   );
@@ -90,44 +90,44 @@ function ConvScreen({navigation}) {
 
 {/* Signup screen && process */}
 
-function SignUpWelcomeScreen({navigation, route}) {
+const SignUpWelcomeScreen = ({navigation, route}) => {
   return (
     <Welcome navigation={ navigation }/>
   );
 }
 
-function SignUpInfoScreen({navigation, route}) {
+const SignUpInfoScreen = ({navigation, route}) => {
   return (
     <Info navigation={ navigation }/>
   );
 }
 
-function ModifyScreen({navigation, route}) {
+const ModifyScreen = ({navigation, route}) => {
   return (
     <Modify navigation={ navigation } route={route} />
   );
 }
 
-function ModifyStepScreen({navigation, route}) {
+const ModifyStepScreen = ({navigation, route}) => {
   return (
     <ModifyStep navigation={ navigation } route={route} />
   );
 }
 
 
-function SignUpStepScreen({navigation, route}) {
+const SignUpStepScreen = ({navigation, route}) => {
   return (
     <Step navigation={ navigation }/>
   );
 }
 
-function SignUpTestiScreen({navigation, route}) {
+const SignUpTestiScreen = ({navigation, route}) => {
   return (
     <Testi navigation={ navigation } route={route}/>
   );
 }
 
-function SignUpCongratsScreen({navigation, route}) {
+const SignUpCongratsScreen = ({navigation, route}) => {
   return (
     <Congrats navigation={ navigation }/>
   );
@@ -135,159 +135,158 @@ function SignUpCongratsScreen({navigation, route}) {
 
 {/* end signup screen  */}
 
-function UserDetails({navigation}){
-  return(
+const UserDetails = ({navigation}) =>(
     <UserDetailsPage navigation={ navigation }/>
-  );
-}
+);
 
-function UserView({navigation,route}){
+
+const UserView = ({navigation,route}) => {
   return(
     <ViewUserPage navigation={ navigation } route={route}/>
   );
 }
 
-function CommentScreen({navigation,route}){
+const CommentScreen = ({navigation,route}) =>{
   return(
     <CommentPage navigation={ navigation } route={route}/>
   );
 }
 
 
-function CreateConvScreen({navigation,route}) {
+const CreateConvScreen = ({navigation,route}) =>{
   return (
     <CreateConv navigation={ navigation } route={route}/>
   );
 }
 
-function EditorConvScreen({navigation,route}) {
+const EditorConvScreen = ({navigation,route}) => {
   return (
     <EditorConv navigation={ navigation } route={route}/>
   );
 }
 
-function SearchUser({navigation, route}) {
+const SearchUser = ({navigation, route}) => {
   return (
     < SearchPage navigation={navigation} route={route}/>
   );
 }
 
-function MessageScreen({navigation, route}) {
+const MessageScreen = ({navigation, route}) => {
   return (
     < Message navigation={navigation} route={route}/>
   );
 }
 
-function CamScreen({navigation, route}) {
+const CamScreen = ({navigation, route})=>{
   return (
     < CameraPage navigation={navigation} route={route}/>
   );
 }
 
-function QuestSelectScreen({navigation, route}) {
+const QuestSelectScreen = ({navigation, route})=>{
   return (
     < QuestSelectPage navigation={navigation} route={route}/>
   );
 }
 
-function BookSelectScreen({navigation, route}) {
+const BookSelectScreen = ({navigation, route})=>{
   return (
     < BookSelectPage navigation={navigation} route={route}/>
   );
 }
 
-function ChapSelectScreen({navigation, route}) {
+const ChapSelectScreen = ({navigation, route})=>{
   return (
     < ChapSelectPage navigation={navigation} route={route}/>
   );
 }
 
-function VerseSelectScreen({navigation, route}) {
+const VerseSelectScreen = ({navigation, route})=>{
   return (
     < VerseSelectPage navigation={navigation} route={route}/>
   );
 }
 
-function ImageSelectScreen({navigation, route}) {
+const ImageSelectScreen = ({navigation, route})=>{
   return (
     < ImageSelectPage navigation={navigation} route={route}/>
   );
 }
 
 {/*INTERACTIVE BOOK  */}
-function InteractiveBookScreen({navigation, route}) {
+const InteractiveBookScreen = ({navigation, route})=>{
   return (
     < InteractiveBookPage navigation={navigation} route={route}/>
   );
 }
 
-function BookListScreen({navigation, route}) {
+const BookListScreen = ({navigation, route})=>{
   return (
     <BookListPage navigation={navigation} route={route}/>
   );
 }
 
-function BookCreatorScreen({navigation, route}) {
+const BookCreatorScreen = ({navigation, route})=>{
   return (
     < BookCreatorPage navigation={navigation} route={route}/>
   );
 }
 
-function BookModifyScreen({navigation, route}) {
+const BookModifyScreen = ({navigation, route})=>{
   return (
     < BookModifyPage navigation={navigation} route={route}/>
   );
 }
 
-function NoteListScreen({navigation, route}) {
+const NoteListScreen = ({navigation, route})=>{
   return (
     < NoteListPage navigation={navigation} route={route}/>
   );
 }
 
-function TagListScreen({navigation, route}) {
+const TagListScreen = ({navigation, route}) =>{
   return (
     < TagListPage navigation={navigation} route={route}/>
   );
 }
 
-function TestListScreen({navigation, route}) {
+const TestListScreen = ({navigation, route})=> {
   return (
     < TestListPage navigation={navigation} route={route}/>
   );
 }
 
-function ThemeScreen({navigation,route}) {
+const ThemeScreen = ({navigation,route})=> {
   return (
     <Theme navigation={ navigation } route={route}/>
   );
 }
 
-function DashScreen({navigation, route}) {
+const DashScreen = ({navigation, route})=> {
   return(
     <DashBoard navigation={navigation}/>
   );
 }
 
-function MediaScreenDetails({navigation, route}) {
+const MediaScreenDetails = ({navigation, route})=> {
   return(
     <MediaDetails navigation={navigation}/>
   );
 }
 
-function Writer({navigation, route}) {
+const Writer = ({navigation, route}) =>{
   return(
     <PostWriter navigation={navigation} route={route}/>
   );
 }
 
-function Splash({navigation, route}) {
+const Splash = ({navigation, route}) =>{
   return(
     <SplashLoader navigation={navigation}/>
   );
 }
 
-function LogoTitle() {
+const LogoTitle = () =>{
   return (
     <View style={{flex:1,flexDirection:"row"}}>
       <Image style={[styleCom.logoHead,{tintColor:COLORS.green}]} source={icons.logo} />

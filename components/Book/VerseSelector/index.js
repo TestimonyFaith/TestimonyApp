@@ -18,7 +18,6 @@ import {auth,db} from "../../../firebase"
 import * as convBackEnd from '../../../backend/Conversation'
 import * as UserBack from '../../../backend/Users'
 
-import bibFr from '../../../backend/bible/Data/json/fr_apee.json'
 import * as bufferVerse from '../../../backend/buffer/bufferVerseSelector'
 import * as buffertesti from '../../../backend/buffer/bufferSignup'
 import * as bookBackEnd from '../../../backend/importBook';

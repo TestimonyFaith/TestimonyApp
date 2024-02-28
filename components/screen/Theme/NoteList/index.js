@@ -22,7 +22,6 @@ import * as bicollabBackEnd from '../../../../backend/BiCollab'
 import { useIsFocused } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NoteCard from "./NoteCard";
-import bibFr from '../../../../backend/bible/Data/json/fr_apee.json'
 //import * from '../../../../'
 
 const NoteList = ({ navigation,route }) =>{
@@ -57,13 +56,7 @@ const NoteList = ({ navigation,route }) =>{
 
 
   function getAllVerse(book,num,numVerse){
-    var allVerseForChap = [];
-    bibFr.forEach(chap => {
-      if(chap.abbrev === book){
-        allVerseForChap = chap.chapters[num];
-      }
-    })
-    return allVerseForChap[numVerse];
+
   }
 
   const getAllNotes = async() =>{

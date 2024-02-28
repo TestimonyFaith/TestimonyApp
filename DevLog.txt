@@ -44,28 +44,23 @@ Bugs :
 - partager les notes comme évents
 - partager les verse comme évents depuis versets menu 
 
-- https://d3owcl6pd5zkqc.cloudfront.net/images/Genesis/Genesis_1.webp
+- notelist all verse => bibFr 
+- tout transformer en const dans app => index.js ( la racine de l'app) (à tester)
+- liens annexe bible > BDD
+- links strongs
+- traduire les titres 
+
+- dans les version manque le ID:0 du premier chapitre !!! (à tester)
+- problème dans URL des images !!!! /Chapitre/Chapitre_X ( à tester)
+- Décalage de 1 entre chapRef bifootnotes et chapRef appli (à tester)
 
 
-=> Pour les deux améliorer le imageSlector ou le dupliquer ! (Plus d'images, choisir le thème, choisir la police) (OK)
-- Bouton ajouter à mettre dans un cercle de couleur (OK)
-- Bouton ajouter couleur dans style du component directement (OK => tout rechecker)
-- Select Book problème dans nom chapitre (OK)
-- note aucune bible collaborative dans les filtres (OK)
-
-- Filtrage impossible de check plusieurs bicollab (OK)
-
-- Filtrage ne fonctionne plus ni tag ni annotations (OK)
 - bicollab invicible après modificiation => not uodate current members (à tester)
 - bicollab après supreesion booklist not refresh => créer un refresh dans flatlist (OK refresh déjà présent)
 - Voir move backward et forward book (à tester)
+- si pas de couleur accent => set color accent par défaut (NOK)
 
-- Revoir getAllverse dans notelist (OK)
-- si pas de couleur accent => set color accent par défaut (à tester)
-
-- Faire theme le dark couleur fond et écriture (OK)
 - Adapter tous les titres au mode dark et light
-- Faire icone app (Ok)
 - Après compilation impossible de lancer app => test via login page + rmeettre id project correct
 - Pour plus de rapidité gérer les books, chapters et verse => par page charge lot par lots pour imiter l'infinite scroll
     -> Pareil filtre gérer 10 par 10
@@ -152,6 +147,18 @@ Communication
 
 Fini 
 ----------------------------------------------------------
+- Revoir getAllverse dans notelist (OK)
+- Faire theme le dark couleur fond et écriture (OK)
+- Faire icone app (Ok)
+=> Pour les deux améliorer le imageSlector ou le dupliquer ! (Plus d'images, choisir le thème, choisir la police) (OK)
+- Bouton ajouter à mettre dans un cercle de couleur (OK)
+- Bouton ajouter couleur dans style du component directement (OK => tout rechecker)
+- Select Book problème dans nom chapitre (OK)
+- note aucune bible collaborative dans les filtres (OK)
+
+- Filtrage impossible de check plusieurs bicollab (OK)
+
+- Filtrage ne fonctionne plus ni tag ni annotations (OK)
 - intégrer les function bottomsheet au components "notes" (OK)
 - Likes note ajouter la lecture après écritue et à l'ouverture => crée une nouvelle BDD ( OK)
 - suppression et modification des tags verses (OK)

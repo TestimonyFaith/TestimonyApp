@@ -16,7 +16,6 @@ import { doc, getDoc,  query, where, getDocs, collection } from "firebase/firest
 import {auth,db} from "../../firebase"
 import * as convBackEnd from '../../backend/Conversation'
 
-import bibFr from '../../backend/bible/Data/json/fr_apee.json'
 import * as bufferVerse from '../../backend/buffer/bufferVerseSelector'
 import { useIsFocused } from "@react-navigation/native";
 
