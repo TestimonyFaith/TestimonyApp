@@ -43,6 +43,8 @@ const [otherVersions,setOtherVersions]=useState(false);
 const [otherCompVersions,setOtherCompVersions]=useState(false);
 const [otherVerses,setOtherVerses]=useState(false);
 const [otherCompVerses,setOtherCompVerses]=useState(false);
+const [linkVerse,setLinkVerse]=useState([]);
+const [defVerse,setDefVerse]=useState([]);
 
 //Référence des sélections 
 const [bookRef,setBookRef]=useState('');
@@ -63,6 +65,9 @@ const [isVisible,setIsVisible]=useState(false);
 const [isThemeVisible,setIsThemeVisible]=useState(false);
 const [isOptionVisible,setIsOptionVisible]=useState(false);
 const [isPolicyVisible,setIsPolicyVisible]=useState(false);
+const [isVerseLinkVisible,setIsVerseLinkIsVisible]=useState(false);
+const [isVerseStrongsVisible,setIsVerseStrongsIsVisible]=useState(false);
+
 const [contentVerse, setContentVerse]=useState('');
 
 //State des data
@@ -96,8 +101,8 @@ const fonctionVerse = [
     {
         title: 'Partager',
         color:COLORS.green,
-        onPress:(lang,vers,book,chap,numVerse,contentVerse)=>{
-        
+        onPress:async(lang,vers,book,chap,numVerse,contentVerse)=>{
+            navigation.navigate('ShareSelector',{verseText:contentVerse,refVerse:book+' '+chap+' '+numVerse,note:''})
         } 
     },
     {
@@ -133,14 +138,24 @@ const deepFonctionVerse = [
     {
         title: 'Defintions',
         color:'#393939',
-        onPress:(lang,vers,book,chap,numVerse,contentVerse)=>{
-        
+        onPress:async(lang,vers,book,chap,numVerse,contentVerse)=>{
+            await bookBackEnd.readStrongVerse(book,chap,numVerse)
+            .then((arrDef)=>{
+                setIsVerseStrongsIsVisible(true);
+                setDefVerse(arrDef);
+            })
         } 
     },
     {
         title: 'Liens',
         color:'#393939',
-        onPress:(lang,vers,book,chap,numVerse,contentVerse)=>{
+        onPress:async(lang,vers,book,chap,numVerse,contentVerse)=>{
+
+            await bookBackEnd.readLinkVerse(book,chap,numVerse)
+            .then((arrLink)=>{
+                setIsVerseLinkIsVisible(true);    
+                setLinkVerse(arrLink);
+            });
         
         } 
     },
@@ -368,7 +383,7 @@ async function createNote(){
     //Ajouté paramètres à CREATENOTE !!
     const value = await AsyncStorage.getItem('USER_EMAIL') 
     if(value != undefined){
-        await noteBackEnd.addNote(noteContent,bookRef,chapRef,verseRef,value,'#fff',route.params.idBook)
+        await noteBackEnd.addNote(noteContent,bookRef,chapRef,verseRef,value,'#fff',route.params.idBook,testRef)
         .then(()=>{
             let toast = Toast.show('Note ajoutée', {
                 duration: Toast.durations.LONG,
@@ -565,6 +580,7 @@ const Verse = ({num,img,content,color,isTagged,idxTag,pix}) => {
                                 <View style={{flex:1,flexDirection:'row',marginLeft:5,marginRight:5}}>
                                     <TouchableOpacity style={{minHeight:40,maxHeight:40,borderRadius:20,backgroundColor:item.color,alignItems:'center',justifyContent:'center'}}
                                     onPress={()=>{
+                                        setIsColorVisible(false);
                                         item.onPress('fr','',bookRef,chapRef,num,content);
                                     }}>
                                         <Text style={[styleFont.message,{color:'#fff',padding:10}]}>{item.title}</Text>
@@ -577,6 +593,26 @@ const Verse = ({num,img,content,color,isTagged,idxTag,pix}) => {
                         </View>
                         </ScrollView>
                     </View>
+        </BottomSheet>
+        <BottomSheet modalProps={{}} isVisible={isVerseLinkVisible}>
+            <FlatList 
+                data={linkVerse}
+                renderItem={({item}) =>{
+                    <Text>{item.link}</Text>
+                }}
+                keyExtractor={item => item.id}
+                style={{width:"100%",gap:10}} 
+            />
+        </BottomSheet>
+        <BottomSheet modalProps={{}} isVisible={isVerseStrongsVisible}>
+            <FlatList 
+                data={defVerse}
+                renderItem={({item}) =>{
+                    <Text>{item.definition}</Text>
+                }}
+                keyExtractor={item => item.id}
+                style={{width:"100%",gap:10}} 
+            />
         </BottomSheet>
     </View>
     )

@@ -33,6 +33,9 @@ const ImgSelector = ({navigation,route}) =>{
     const [verseRef, setVerseRef]=useState('');
     const [nbPage,setNbPage]=useState(2);
 
+    const[swatchesOnly,setSwatchesOnly]=useState(false);
+    const[colorText,setColorText]=useState('#000000');
+
     const [status, requestPermission] = MediaLibrary.usePermissions();
     const imageRef = useRef();
 
@@ -60,8 +63,8 @@ const ImgSelector = ({navigation,route}) =>{
               }
 
               setImgAPI(dataImgAPI);
-              bufferVerse.setImage(dataImgAPI.url);
-              setImgUrl(dataImgAPI.url);
+              bufferVerse.setImage(dataImgAPI[0].url);
+              setImgUrl(dataImgAPI[0].url);
               setImgSelected(true);
               setVerseText(bufferVerse.getTextVerse());
               var chap = parseInt(bufferVerse.getChapter())+1;
@@ -200,7 +203,7 @@ const ImageTile = ({url}) => (
             {imgSelected&& 
               <ViewShot ref={imageRef} options={{ fileName: "Your-File-Name", format: "jpg", quality: 0.9 }} style={{minHeight:'25%',maxHeight:'25%',padding:10,marginTop:20,minWidth:'90%'}}>
                 <ImageBackground resizeMode="cover" imageStyle={{ borderRadius: 25,minWidth:'90%',aspectRatio:1/1}} style={{flex: 1,justifyContent:"center",alignItems:'center'}} source={{uri:bufferVerse.getUrlImage()}} >
-                  <Text style={{color:'#fff',padding:10,fontFamily:famillyPolice}}>{verseText}</Text>
+                  <Text style={{color:colorText,padding:10,fontFamily:famillyPolice}}>{verseText}</Text>
                   <Text style={[styleFont.verseRef,{ color:'#fff' } ]}>{verseRef}</Text>
                 </ImageBackground>
               </ViewShot>
@@ -243,6 +246,49 @@ const ImageTile = ({url}) => (
                             style={{width:"100%",gap:10,maxHeight:200}} 
                         />
             </ScrollView>
+
+             {/* ------------------------------------ */}
+             <Text style={styleFont.title}>Couleur du texte</Text>
+            <Text style={styleFont.subtitle}>Choisi la couleur </Text>
+
+            <ColorPicker
+                    color={COLORS.green}
+                    swatchesOnly={swatchesOnly}
+                    onColorChange={()=>{}}
+                    onColorChangeComplete={(colorHexa)=>{
+                        setColorText(colorHexa);
+                  }}
+                    thumbSize={40}
+                    sliderSize={40}
+                    palette={[COLORS.green,'#97C1A9','#A3E1DC','#F5D2D3','#F6EAC2']}
+                    noSnap={true}
+                    row={false}
+                    swatchesLast={true}
+                    swatches={true}
+                    discrete={false}
+                    wheelLodingIndicator={<ActivityIndicator size={40} />}
+                    sliderLodingIndicator={<ActivityIndicator size={20} />}
+                    useNativeDriver={false}
+                    useNativeLayout={false}
+                />
+                
+                {swatchesOnly&&<TouchableOpacity style={styleCom.button} onPress={()=>{
+                  setSwatchesOnly(false)
+                }}>
+                  <Text style={styleFont.message}>
+                    Voir plus 
+                  </Text>
+                </TouchableOpacity>}
+
+                {!swatchesOnly&&<TouchableOpacity style={styleCom.button} onPress={()=>{
+                  setSwatchesOnly(true)
+                }}>
+                  <Text style={styleFont.message}>
+                    Voir moins
+                  </Text>
+                </TouchableOpacity>}
+
+            {/* ------------------------------------ */}
 
 
             <TouchableOpacity onPress={()=>{

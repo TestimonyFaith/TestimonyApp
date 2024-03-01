@@ -19,6 +19,7 @@ import CardConv from './NoteCard'
 
 import * as noteBackEnd from '../../../../backend/Notes'
 import * as bicollabBackEnd from '../../../../backend/BiCollab'
+import * as bookBackEnd from '../../../../backend/importBook'
 import { useIsFocused } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NoteCard from "./NoteCard";
@@ -55,8 +56,16 @@ const NoteList = ({ navigation,route }) =>{
 
 
 
-  function getAllVerse(book,num,numVerse){
+  async function getAllVerse(book,num,numVerse,idTest){
+    var dataVers = '';
+    const vers = await AsyncStorage.getItem('VERS_BI');
+    if(vers !=''){
+        dataVers=vers;
+    }else{
+        dataVers= 'Colombe'
+    }
 
+    bookBackEnd.searchVerse('fr',dataVers,book,num,numVerse,idTest);
   }
 
   const getAllNotes = async() =>{
@@ -209,7 +218,7 @@ const SelectConv = ({index,id,name,version,image,date}) => (
                         {n.refBook +' '+n.refChapter+' '+n.refVerse}
                     </Text>
                     <Text style={styleFont.subtitle}>
-                        {getAllVerse(n.refBook,n.refChapter,n.refVerse)}
+                        {getAllVerse(n.refBook,n.refChapter,n.refVerse,n.refTest)}
                     </Text>
                     <View style={{flex:1,flexDirection:'column'}}>
                     {n.contArray.map((c)=>{

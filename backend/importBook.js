@@ -10,10 +10,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Alert} from 'react-native'
 
 import colombe from '../backend/bible/Weebly/fr/French Colombe.json'
-//import segond from '../backend/bible/Weebly/fr/French Louis Segond (1910).json'
-//import segond21 from '../backend/bible/Weebly/fr/French Bible Segond 21 (S21).json'
+import segond from '../backend/bible/Weebly/fr/French Louis Segond10.json'
+import segond21 from '../backend/bible/Weebly/fr/French Bible Segond21.json'
+import semeur from '../backend/bible/Weebly/fr/French Semeur.json'
+import NBS from '../backend/bible/Weebly/fr/French Nouvelle Bible Segond.json'
 import darby from '../backend/bible/Weebly/fr/French Darby.json'
 import PDV from '../backend/bible/Weebly/fr/French Parole de Vie.json'
+
+import def from '../backend/bible/Weebly/strongs.json'
 
 const [errorBook,setErrorBook] = useState('');
 const [currentVersion,setCurrentVersion] = useState({});
@@ -28,6 +32,16 @@ const listVersions = [
         content:colombe
     },
     {
+        id:1,
+        name:'Segond 1910',
+        content:segond
+    },
+    {
+        id:2,
+        name:'Segond 21',
+        content:segond21
+    },
+    {
         id:3,
         name:'Darby',
         content:darby
@@ -35,6 +49,14 @@ const listVersions = [
         id:4,
         name:'Parole de vie',
         content:PDV
+    },{
+        id:5,
+        name:'Semeur',
+        content:semeur
+    },{
+        id:6,
+        name:'Nouvelle Bible Segond',
+        content:NBS
     }]
     }
 ]
@@ -178,5 +200,55 @@ export async function readImgChap(bookId,chapId){
     })
 
     return arrDataConv;
+
+}
+
+export async function readLinkVerse(bookId,chapId,verseId){
+    arrDataConv = []
+    var owner = false;
+    
+    
+    const q = query(collection(db, "bifootnotes"),where('bookId',"==",bookId),where('chapRef','==',chapId),where('verseRef','==',verseId));
+    
+    const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(async(doc) => {
+            console.log(doc.id, " => ", doc.data());
+
+            const json = doc.data();
+
+            arrDataConv.push({
+                link:json.link
+            })
+    })
+
+    return arrDataConv;
+
+}
+
+export async function readStrongVerse(bookId,chapId,verseId){
+    
+    var arrRes = []
+        
+    const q = query(collection(db, "bifootnotes"),where('bookId',"==",bookId),where('chapRef','==',chapId),where('verseRef','==',verseId));
+    
+    const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(async(doc) => {
+            console.log(doc.id, " => ", doc.data());
+
+            const json = doc.data();
+
+            var arrStg = json.strongs;
+
+            arrStg.forEach((s)=>{
+                if( s != undefined && s != '' && s!= null){
+                    arrRes.push({
+                        definition:def[s]
+                    }) 
+                }
+            })
+            
+    })
+
+    return arrRes;
 
 }

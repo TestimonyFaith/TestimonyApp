@@ -14,7 +14,7 @@ import * as uuid from "uuid";
 const [errorNote,setErrorNote] = useState('');
 const arrData = [];
 
-export async function addNote(content,book,chap,verse,idUser,color,idBiCollab){
+export async function addNote(content,book,chap,verse,idUser,color,idBiCollab,numTest){
 
   console.log('refVerse : '+verse);
   await isNoteExist(book,chap,verse,idBiCollab)
@@ -52,7 +52,7 @@ export async function addNote(content,book,chap,verse,idUser,color,idBiCollab){
     })
   }else{
 
-    await createNote(content,book,chap,verse,idUser,color,idBiCollab)
+    await createNote(content,book,chap,verse,idUser,color,idBiCollab,numTest)
     .then(()=>{
       console.log("A New Document Field has been added to an existing document");
     })
@@ -111,7 +111,7 @@ export async function getIdbyRef(book,chap,verse,idBiCollab){
 
 }
 
-export async function createNote(content,book,chap,verse,idUser,color,idBiCollab){
+export async function createNote(content,book,chap,verse,idUser,color,idBiCollab,numTest){
         // Add a new document in collection "notes"
         await addDoc(collection(db, "notes"), {
             content:[{
@@ -124,6 +124,7 @@ export async function createNote(content,book,chap,verse,idUser,color,idBiCollab
             refBook:book,
             refChapter:chap,
             refVerse:verse,
+            refTest:numTest,
             likes:[],
             idBicollab:idBiCollab,
             date: moment().format("DD/MM/YYYY"),

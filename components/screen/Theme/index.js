@@ -25,6 +25,8 @@ import CardVerse from '../../Book/CardVerse'
 import ReactDOM from "react-dom";
 import QRCode from "react-qr-code";
 
+import ColorPicker from 'react-native-wheel-color-picker'
+
 
 const DashBoard = ({ navigation, route }) =>{
 
@@ -36,6 +38,8 @@ const DashBoard = ({ navigation, route }) =>{
   const [userVerse,setUserVerse]=useState('');
   const [showColors, setShowColors]=useState(false);
   const [allVers, setAllVers]=useState([]);
+  const [swatchesOnly,setSwatchesOnly]=useState(false);
+  const [color,setColor]=useState('');
 
 
 
@@ -342,23 +346,46 @@ const DashBoard = ({ navigation, route }) =>{
 
               <View style={{flex:1,flexDirection:'column',alignItems:'center',gap:10,marginBottom:25}}>
        
-              <Text style={[styleFont.title,{color:COLORS.colorTitle}]}>Choisir un thème</Text>
+                <Text style={[styleFont.title,{color:COLORS.colorTitle}]}>Choisir un thème</Text>
 
-                <ScrollView contentContainerStyle={{minWidth:'90%'}} horizontal={true}>      
-                {ListTheme.map((t)=>{
-                  return(
-                  <TouchableOpacity 
-                        style={{width:50,height:50,backgroundColor:t.colorAccent,borderRadius:10}} 
-                        onPress={()=>{
-                          AsyncStorage.setItem('USER_COLOR',t.colorAccent);
+                <ColorPicker
+                    color={COLORS.green}
+                    swatchesOnly={swatchesOnly}
+                    onColorChange={()=>{}}
+                    onColorChangeComplete={(colorHexa)=>{AsyncStorage.setItem('USER_COLOR',colorHexa);
+                  }}
+                    thumbSize={40}
+                    sliderSize={40}
+                    palette={[COLORS.green,'#97C1A9','#A3E1DC','#F5D2D3','#F6EAC2']}
+                    noSnap={true}
+                    row={false}
+                    swatchesLast={true}
+                    swatches={true}
+                    discrete={false}
+                    wheelLodingIndicator={<ActivityIndicator size={40} />}
+                    sliderLodingIndicator={<ActivityIndicator size={20} />}
+                    useNativeDriver={false}
+                    useNativeLayout={false}
+                />
+                
+                {swatchesOnly&&<TouchableOpacity style={styleCom.button} onPress={()=>{
+                  setSwatchesOnly(false)
+                }}>
+                  <Text style={styleFont.message}>
+                    Voir plus 
+                  </Text>
+                </TouchableOpacity>}
 
-                        }}
-                      >
-                  </TouchableOpacity>
-                  )
-                })
-              }
-                </ScrollView>  
+                {!swatchesOnly&&<TouchableOpacity style={styleCom.button} onPress={()=>{
+                  setSwatchesOnly(true)
+                }}>
+                  <Text style={styleFont.message}>
+                    Voir moins
+                  </Text>
+                </TouchableOpacity>}
+
+
+
               </View>
 
               <View style={{flex:1,flexDirection:'column',alignItems:'center',justifyContent:'center',gap:10,marginBottom:10,paddingBottom:10}}>

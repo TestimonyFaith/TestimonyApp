@@ -50,6 +50,7 @@ import BookSelectPage from '../components/Book/BookSelector';
 import ChapSelectPage from '../components/Book/ChapterSelector';
 import VerseSelectPage from '../components/Book/VerseSelector';
 import ImageSelectPage from '../components/Book/ImageSelector';
+import ShareSelectorPage from '../components/Book/ShareSelector';
 import NoteListPage from '../components/screen/Theme/NoteList';
 import TagListPage from '../components/screen/Theme/VerseList';
 import TestListPage from '../components/screen/Theme/TestiList';
@@ -213,6 +214,12 @@ const ImageSelectScreen = ({navigation, route})=>{
   );
 }
 
+const ShareSelectScreen = ({navigation, route})=>{
+  return (
+    < ShareSelectorPage navigation={navigation} route={route}/>
+  );
+}
+
 {/*INTERACTIVE BOOK  */}
 const InteractiveBookScreen = ({navigation, route})=>{
   return (
@@ -306,12 +313,13 @@ export default function App({navigation}) {
 
     async function getColorUser(){
       const colorUser = await AsyncStorage.getItem('USER_COLOR');
-      if(colorUser != ' ' || colorUser == undefined || colorUser== null){
+      if(colorUser != '' || colorUser == undefined || colorUser == null){
         console.log('user color : '+colorUser);
         COLORS.green = colorUser;
       }else{
         console.log('user color : '+colorUser);
         colorUser = '#E0CDA9';
+        COLORS.green = colorUser;
       }
     }
     getColorUser();
@@ -548,6 +556,11 @@ export default function App({navigation}) {
       <Stack.Screen
                 name="ImageSelector"
                 component={ImageSelectScreen}
+                options={{ headerShown: false }}
+            />
+      <Stack.Screen
+                name="ShareSelector"
+                component={ShareSelectScreen}
                 options={{ headerShown: false }}
             />
 

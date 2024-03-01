@@ -23,6 +23,7 @@ Brain storming ideas :
 - créer event quand new testimony 
 - Personnaliser couleur des polices (verse image + bible collaborative)
 - Générer un editeur de podcast audio ou video qui en fonction du tag temps change l'écran du dessus et effectue des actions comme "Pause video ou audio"
+- partager les notes comme évents (via new image selector)
 
 VERSES :
 
@@ -38,32 +39,33 @@ UX :
 
 Bugs :
 -----------------------------------------
-- Limiter les event à une seule photo 
+- Event multi photo mettre une flatlist horizontale
 - Mettre une safe area sur tous les stack screen sans header 
+- Adapter tous les titres au mode dark et light
+- Pour plus de rapidité gérer les books, chapters et verse => par page charge lot par lots pour imiter l'infinite scroll
+    -> Pareil filtre gérer 10 par 10
 
-- partager les notes comme évents
-- partager les verse comme évents depuis versets menu 
-
-- notelist all verse => bibFr 
+- partager les verse comme évents depuis versets menu (à tester)
+- Lier les boutons de partage (à Tester)
+- share Selector ( à tester ) 
+- trouver un color picker qui marche bien ( à tester)
+- notelist all verse => bibFr (à tester)
+- remettre toute les versions (à tester)
 - tout transformer en const dans app => index.js ( la racine de l'app) (à tester)
-- liens annexe bible > BDD
-- links strongs
-- traduire les titres 
-
+- liens annexe bible > BDD (à tester)
 - dans les version manque le ID:0 du premier chapitre !!! (à tester)
 - problème dans URL des images !!!! /Chapitre/Chapitre_X ( à tester)
 - Décalage de 1 entre chapRef bifootnotes et chapRef appli (à tester)
+- links strongs ( à tester)
+- traduire les titres , les strongs, (les liens => traduction automatique)
 
 
 - bicollab invicible après modificiation => not uodate current members (à tester)
 - bicollab après supreesion booklist not refresh => créer un refresh dans flatlist (OK refresh déjà présent)
 - Voir move backward et forward book (à tester)
-- si pas de couleur accent => set color accent par défaut (NOK)
+- si pas de couleur accent => set color accent par défaut (à tester)
 
-- Adapter tous les titres au mode dark et light
-- Après compilation impossible de lancer app => test via login page + rmeettre id project correct
-- Pour plus de rapidité gérer les books, chapters et verse => par page charge lot par lots pour imiter l'infinite scroll
-    -> Pareil filtre gérer 10 par 10
+
 
 
 
